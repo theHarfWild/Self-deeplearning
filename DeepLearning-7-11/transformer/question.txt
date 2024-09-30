@@ -1,0 +1,2 @@
+1.mask的形状为什么是三维，为什么不是最后一行一列都是True
+2.Encoder列表里为什么是Encoderlayer()而不是Encoderlayer

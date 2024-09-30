@@ -1,0 +1,9 @@
+d_model=512#词向量空间维数
+d_ff=2048#线性层维数
+d_k=d_v=64#k,v矩阵维数，k和q维数相等，为查询维数，v矩阵任意
+n_layers=6#子层数
+n_heads=6#注意头数
+src_vocab_size=6#词库大小
+tgt_vocab_size=9#词库大小
+src_len=5
+tgt_len=6
