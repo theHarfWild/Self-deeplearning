@@ -23,7 +23,7 @@ class PatchNet(nn.Module):
         self.H1=self.H//self.P
         self.W1=self.W//self.P
         self.pos_embed = nn.Parameter(torch.zeros(1, self.H1*self.W1+1, self.D))
-        self.cls_token = nn.Parameter(torch.zeros(config.batch_size, 1, self.D))
+        self.cls_token = nn.Parameter(torch.zeros(1, 1, self.D))
         self.embedding = nn.Linear(self.P**2*self.C,self.D)
         self.lis=[]
 
@@ -33,8 +33,9 @@ class PatchNet(nn.Module):
         batched_images = batched_images.view(batched_images.size(0),self.H1*self.W1,self.C*self.P**2)
         #分割完转变为向量
         batched_images = self.embedding(batched_images)
+        cls_token=self.cls_token.repeat(config.batch_size,1,1)
         #加入分类头
-        batched_images = torch.cat((batched_images,self.cls_token),dim=1)
+        batched_images = torch.cat((batched_images,cls_token),dim=1)
         #加入posembedding
         out_embed=self.pos_embed+batched_images
         return out_embed
