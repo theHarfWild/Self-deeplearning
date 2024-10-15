@@ -1,15 +1,6 @@
 import torch.nn as nn
 import torch
-b=torch.Tensor([
-    [[10,11],
-     [12,13]],
-    [[14,15],
-     [16,17]],
-    [[18,19],
-     [20,21]],
-    [[22,23],
-     [24,25]]
-])
-a=b.transpose(-1,-3)
-print(b[0,1,1])
-print(a[1,1,0])
+#           (卷积核厚度，  卷积核个数       ，卷积核面积）
+c=nn.Conv2d(in_channels=3,out_channels=3,kernel_size=3,stride=1,padding=1,bias=True,groups=3)
+for name, parameters in c.named_parameters():
+    print(name, ':', parameters.size())
