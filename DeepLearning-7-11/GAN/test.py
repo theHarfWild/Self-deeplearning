@@ -14,7 +14,8 @@ generator.eval()
 z=torch.randn(9,config.rand_dim).to(device)
 res=generator(z).view(9,28,-1)
 for i in range(9):
-    plt.subplot(3,3,i+1)
+    plt.subplot(1,1,1)
     a=np.array(res[i,:,:].detach().cpu())
-    plt.imshow(a/a.max()*255,cmap='gray')
+    if i==0:
+        plt.imshow(a/a.max()*255,cmap='gray')
 plt.show()

@@ -36,7 +36,8 @@ for epoch in range(epochs):
         g_opt.step()
 
         d_opt.zero_grad()
-        d_loss=0.3*(loss_fn(discriminator(gt_images),torch.ones(config.batch_size,1).to(device))+loss_fn(discriminator(pred_images.detach()),torch.zeros(config.batch_size,1).to(device)))
+        d_loss=0.3*(loss_fn(discriminator(gt_images),torch.ones(config.batch_size,1).to(device))+
+                    loss_fn(discriminator(pred_images.detach()),torch.zeros(config.batch_size,1).to(device)))
         d_loss.backward()
         d_opt.step()
     print(f'epoch {epoch} gloss {g_loss.item()},dloss {d_loss.item()}')
